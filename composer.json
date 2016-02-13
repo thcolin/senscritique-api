@@ -1,0 +1,18 @@
+{
+    "name": "thcolin/senscritique-api",
+    "authors": [
+        {
+            "name": "thcolin",
+            "email": "th.colin3@gmail.com"
+        }
+    ],
+    "require": {
+        "imangazaliev/didom": "~1.5",
+        "jyggen/curl": "~3.0"
+    },
+    "autoload": {
+	    "psr-4": {
+		    "thcolin\\SensCritiqueAPI\\": "src/"
+	    }
+    }
+}
