@@ -13,15 +13,6 @@
 
     const DOMAIN = 'www.senscritique.com';
 
-    public function __construct(){
-      $this -> cookie = tempnam('/tmp', 'CURL_COOKIE_SENSCRITIQUE_');
-      $this -> ch = curl_init();
-      curl_setopt($this -> ch, CURLOPT_RETURNTRANSFER, true);
-      curl_setopt($this -> ch, CURLOPT_COOKIEJAR, $this -> cookie);
-      curl_setopt($this -> ch, CURLOPT_COOKIEFILE, $this -> cookie);
-      curl_setopt($this -> ch, CURLOPT_HEADER, true);
-    }
-
     public function getDocumentByURI($args){
       $uris = (is_array($args) ? $args:[$args]);
       $dp = new Dispatcher();
@@ -77,29 +68,6 @@
       } else{
         return $location;
       }
-    }
-
-    private function curl_exec($url, $args = []){
-      curl_setopt($this -> ch, CURLOPT_URL, $url);
-      foreach($args as $opt => $value){
-        curl_setopt($this -> ch, $opt, $value);
-      }
-      $exec = curl_exec($this -> ch);
-      $info = curl_getinfo($this -> ch);
-
-      $this -> headers = substr($exec, 0, $info['header_size']);
-      $this -> raw = substr($exec, $info['header_size']);
-      $this -> error = curl_error($this -> ch);
-
-      return $this -> raw;
-    }
-
-    private function curl_headers(){
-      return $this -> headers;
-    }
-
-    private function curl_error(){
-      return $this -> error;
     }
 
   }
