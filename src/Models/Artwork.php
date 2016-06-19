@@ -7,6 +7,7 @@
   use thcolin\SensCritiqueAPI\Document;
   use thcolin\SensCritiqueAPI\Exceptions\URIException;
   use thcolin\SensCritiqueAPI\Exceptions\DocumentParsingException;
+  use thcolin\SensCritiqueAPI\Exceptions\JSONUnvalidException;
 
   abstract class Artwork{
 
@@ -156,9 +157,24 @@
     }
 
     public function getStoryline(){
-      if(!isset($this -> storyline)){
-        $json = $this -> api -> getJSONByURI('products/storyline/'.$this -> getID());
+      if(isset($this -> storyline)){
+        return $this -> storyline;
+      }
+
+      try{
+        $json = $this -> api -> getJSONByURI('product/storyline/'.$this -> getID());
         $this -> storyline = $json['json']['data'];
+      } catch(JSONUnvalidException $e){
+        $explode = explode('/', $this->uri);
+
+        if(end($explode) == 'details'){
+          unset($explode[count($explode) - 1]);
+        }
+
+        $document = $this -> api -> getDocumentByURI(implode('/', $explode));
+        $elements = $document -> find('.pvi-productDetails-resume');
+
+        $this -> storyline = trim($elements[0]->text());
       }
 
       return $this -> storyline;

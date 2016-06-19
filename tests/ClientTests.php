@@ -51,7 +51,7 @@
       $this -> assertEquals('Anastasia', $movie -> getTitle());
       $this -> assertEquals(1997, $movie -> getYear());
       $this -> assertEquals('Don Bluth, Gary Goldman', $movie -> getDirectors());
-      $this -> assertEquals('Jean-Michel Farcy, Lucienne Chiaroni, Barbara Tissier, Patrick Guillemin, Meg Ryan, John Cusack, Christopher Lloyd, Kelsey Grammer', $movie -> getActors());
+      $this -> assertEquals('Jean-Michel Farcy, Lucienne Chiaroni, Barbara Tissier, Patrick Guillemin, Meg Ryan, John Cusack, Christopher Lloyd (1), Kelsey Grammer', $movie -> getActors());
       $this -> assertEquals('Animation, Aventure, Drame, Fantastique', $movie -> getGenres());
       $this -> assertEquals('1 h 34 min', $movie -> getDuration());
       $this -> assertEquals('États-unis', $movie -> getCountries());

@@ -41,7 +41,7 @@
     }
 
     public function getJSONByURI($uri){
-      $request = new Request('http://'.self::DOMAIN.'/sc/'.$uri.'.json');
+      $request = new Request('http://'.self::DOMAIN.'/sc2/'.$uri.'.json');
       $request -> setOption(CURLOPT_HTTPHEADER, ['X-Requested-With: XMLHttpRequest']);
       $request -> execute();
 
