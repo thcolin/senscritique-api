@@ -1,6 +1,7 @@
 <?php
 
 	use thcolin\SensCritiqueAPI\Client;
+  use thcolin\SensCritiqueAPI\Models\Artwork;
 
 	class ClientTest extends PHPUnit_Framework_TestCase{
 
@@ -64,17 +65,18 @@
 		}
 
 		public function testGetArtworkMovieSuccess(){
-      $movie = $this -> client -> getArtwork(8193726);
+      $movie = $this -> client -> getArtwork(408059);
 
-      $this -> assertEquals(8193726, $movie -> getId());
-      $this -> assertEquals('007 Spectre', $movie -> getTitle());
-      $this -> assertEquals(2015, $movie -> getYear());
-      $this -> assertEquals('Sam Mendes', $movie -> getDirectors());
-      $this -> assertEquals('Daniel Craig, Christoph Waltz, Léa Seydoux, Ralph Fiennes, Ben Whishaw, Naomie Harris, Dave Bautista, Andrew Scott', $movie -> getActors());
-      $this -> assertEquals('Action, Aventure, Policier, Thriller', $movie -> getGenres());
-      $this -> assertEquals('2 h 28 min', $movie -> getDuration());
-      $this -> assertEquals('États-unis, Royaume-uni', $movie -> getCountries());
-      $this -> assertEquals('Un message énigmatique surgi du passé entraîne James Bond dans une mission très personnelle à Mexico City puis à Rome, où il rencontre Lucia Sciarra, la magnifique et inaccessible veuve d’un célèbre criminel. Bond réussit à infiltrer une réunion secrète révélant l’existence d’une redoutable organisation baptisée SPECTRE.', $movie -> getStoryline());
+      $this -> assertEquals(408059, $movie -> getId());
+      $this -> assertEquals('C\'est la fin', $movie -> getTitle());
+      $this -> assertEquals('This Is the End', $movie -> getTitle(Artwork::TITLE_ORIGINAL));
+      $this -> assertEquals(2012, $movie -> getYear());
+      $this -> assertEquals('Seth Rogen, Evan Goldberg', $movie -> getDirectors());
+      $this -> assertEquals('James Franco, Jonah Hill, Seth Rogen, Jay Baruchel, Danny McBride, Craig Robinson, Michael Cera, Emma Watson', $movie -> getActors());
+      $this -> assertEquals('Comédie', $movie -> getGenres());
+      $this -> assertEquals('1 h 47 min', $movie -> getDuration());
+      $this -> assertEquals('États-unis', $movie -> getCountries());
+      $this -> assertEquals('Des amis sont obligés de se terrer dans leur maison à la suite d\'événements étranges et catastrophiques qui ravagent Los Angeles.', $movie -> getStoryline());
 		}
 
 		public function testGetArtworkError(){
@@ -103,6 +105,7 @@
 
       $this -> assertEquals(438579, $movie -> getId());
       $this -> assertEquals('Black Mirror', $movie -> getTitle());
+      $this -> assertEquals(null, $movie -> getTitle(Artwork::TITLE_ORIGINAL));
       $this -> assertEquals(2011, $movie -> getYear());
       $this -> assertEquals('Charlie Brooker', $movie -> getDirectors());
       $this -> assertEquals('Rasmus Hardiker, Tobias Menzies, Janet Montgomery, Ian Bonar, Tuppence Middleton, Jason Flemyng, Claire Keelan, Chloe Pirrie', $movie -> getActors());

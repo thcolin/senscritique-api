@@ -13,6 +13,9 @@
 
     use Document;
 
+    const TITLE_DEFAULT = 0;
+    const TITLE_ORIGINAL = 1;
+
     static function constructObjectByURI($uri){
       $explode = explode('/', $uri);
 
@@ -70,9 +73,12 @@
       return $this -> __toString();
     }
 
-    public function getTitle(){
-      if($elements = $this -> find('.pco-cover-title')){
+    public function getTitle($type = self::TITLE_DEFAULT){
+      if($type == self::TITLE_DEFAULT && $elements = $this -> find('.pco-cover-title')){
         return trim($elements[0] -> text());
+      } else if($type == self::TITLE_ORIGINAL && $elements = $this -> find('.d-grid-aside')){
+        $element = $this -> findNextNodeByText($elements[0], 'Titre original');
+        return ($element ? $element -> text():null);
       } else{
         throw new DocumentParsingException();
       }
