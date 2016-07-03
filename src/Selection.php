@@ -46,7 +46,7 @@ class Selection extends DynamicArray{
 
   private function getLastPage(){
     if($elements = $this->find('.eipa-pages .eipa-page')){
-      return substr(trim(end($elements)->text()), 3);
+      return str_replace('.', '', trim(end($elements)->text()));
     } else{
       return 1;
     }
