@@ -54,7 +54,7 @@ abstract class Artwork{
 
    foreach(get_class_methods(__CLASS__) as $method){
      if(substr($method, 0, 3) == 'get' && !in_array($method, ['getClassByURI'])){
-         $array[lcfirst(substr($method, 3))] = $this->$method();
+        $array[lcfirst(substr($method, 3))] = $this->$method();
      }
    }
 
@@ -106,9 +106,6 @@ abstract class Artwork{
         foreach($element->find('.ecot-contact-label') as $element){
           $directors[] = trim($element->text());
         }
-      } else{
-        var_dump($elements);
-        die();
       }
     } else{
       throw new DocumentParsingException();
