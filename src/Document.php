@@ -37,7 +37,7 @@ trait Document{
     return $this->document->find($expression);
   }
 
-  public function findNextNodeByText(DiDomElement $element, $expression){
+  public function findNextNodeByText(DiDomElement $element, $expression, $grep = false){
     $childNodes = $element->getNode()->childNodes;
     $length = $childNodes->length;
     $stop = false;
@@ -48,7 +48,9 @@ trait Document{
         $document = new DiDomDocument();
         $document->appendChild($node);
         return $document;
-      } else if($expression == $node->textContent){
+      } else if(!$grep && $expression == $node->textContent){
+        $stop = true;
+      } else if($grep && preg_match($expression, $node->textContent)){
         $stop = true;
       }
     }

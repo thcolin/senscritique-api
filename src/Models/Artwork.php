@@ -101,9 +101,14 @@ abstract class Artwork{
   public function getDirectors($array = false){
     $directors = [];
 
-    if($elements = $this->find('.d-rubric')){
-      foreach($elements[1]->find('.ecot-contact-label') as $element){
-        $directors[] = trim($element->text());
+    if($elements = $this->find('.d-grid-main')){
+      if($element = $this->findNextNodeByText($elements[0], '#Réalisateur|Créateurs#', true)){
+        foreach($element->find('.ecot-contact-label') as $element){
+          $directors[] = trim($element->text());
+        }
+      } else{
+        var_dump($elements);
+        die();
       }
     } else{
       throw new DocumentParsingException();
@@ -115,9 +120,11 @@ abstract class Artwork{
   public function getActors($array = false){
     $actors = [];
 
-    if($elements = $this->find('.d-rubric')){
-      foreach($elements[0]->find('.ecot-contact-label') as $element){
-        $actors[] = trim($element->text());
+    if($elements = $this->find('.d-grid-main .d-rubric')){
+      if($element = $this->findNextNodeByText($elements[0], '#Acteurs#', true)){
+        foreach($element->find('.ecot-contact-label') as $element){
+          $actors[] = trim($element->text());
+        }
       }
     } else{
       throw new DocumentParsingException();
@@ -130,8 +137,12 @@ abstract class Artwork{
     $genres = [];
 
     if($elements = $this->find('.d-grid-aside')){
-      foreach($this->findNextNodeByText($elements[0], 'Genre')->find('a') as $element){
-        $genres[] = $element->text();
+      if($element = $this->findNextNodeByText($elements[0], 'Genre')){
+        foreach($element->find('a') as $element){
+          $genres[] = $element->text();
+        }
+      } else{
+        $genres[] = 'Film';
       }
     } else{
       throw new DocumentParsingException();

@@ -79,6 +79,20 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $this->assertEquals('Des amis sont obligés de se terrer dans leur maison à la suite d\'événements étranges et catastrophiques qui ravagent Los Angeles.', $movie->getStoryline());
   }
 
+  public function testGetArtworkMovieNoActorsSuccess(){
+    $movie = $this->client->getArtwork(13330620);
+
+    $this->assertEquals(13330620, $movie->getId());
+    $this->assertEquals('Demain', $movie->getTitle());
+    $this->assertEquals(2015, $movie->getYear());
+    $this->assertEquals('Cyril Dion, Mélanie Laurent', $movie->getDirectors());
+    $this->assertEquals(null, $movie->getActors());
+    $this->assertEquals('Film', $movie->getGenres());
+    $this->assertEquals('1 h 58 min', $movie->getDuration());
+    $this->assertEquals('France', $movie->getCountries());
+    $this->assertEquals("Et si montrer des solutions, raconter une histoire qui fait du bien, était la meilleure façon de résoudre les crises écologiques, économiques et sociales, que traversent nos pays ? Suite à la publication d’une étude qui annonce la possible disparition d’une partie de l’humanité d’ici 2100, Cyril Dion et Mélanie Laurent sont partis avec une équipe de quatre personnes enquêter dans dix pays pour comprendre ce qui pourrait provoquer cette catastrophe et surtout comment l'éviter. Durant leur voyage, ils ont rencontré les pionniers qui réinventent l’agriculture, l’énergie, l’économie, la démocratie et l’éducation. En mettant bout à bout ces initiatives positives et concrètes qui fonctionnent déjà, ils commencent à voir émerger ce que pourrait être le monde de demain…", $movie->getStoryline());
+  }
+
   public function testGetArtworkError(){
     $this->setExpectedException('thcolin\SensCritiqueAPI\Exceptions\URIException');
     $movie = $this->client->getArtwork(1);
