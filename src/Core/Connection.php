@@ -1,19 +1,19 @@
 <?php
 
-  namespace thcolin\SensCritiqueAPI\Core;
+namespace thcolin\SensCritiqueAPI\Core;
 
-  trait Connection{
+trait Connection{
 
-    protected $api;
+  protected $api;
 
-    public function __construct(){
-      $this -> __connection();
-    }
-
-    public function __connection(){
-      $this -> api = new API();
-    }
-
+  public function __construct(){
+    $this->__connection();
   }
+
+  public function __connection(){
+    $this->api = new API();
+  }
+
+}
 
 ?>

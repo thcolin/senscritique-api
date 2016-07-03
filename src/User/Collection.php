@@ -1,9 +1,9 @@
 <?php
 
-  namespace thcolin\SensCritiqueAPI\User;
+namespace thcolin\SensCritiqueAPI\User;
 
-  use thcolin\SensCritiqueAPI\Selection;
+use thcolin\SensCritiqueAPI\Selection;
 
-  class Collection extends Selection{}
+class Collection extends Selection{}
 
 ?>

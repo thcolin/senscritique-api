@@ -1,31 +1,31 @@
 <?php
 
-  namespace thcolin\SensCritiqueAPI;
+namespace thcolin\SensCritiqueAPI;
 
-  use thcolin\SensCritiqueAPI\Core\Connection;
-  use thcolin\SensCritiqueAPI\User\User;
-  use thcolin\SensCritiqueAPI\User\Listing;
-  use thcolin\SensCritiqueAPI\Models\Artwork;
+use thcolin\SensCritiqueAPI\Core\Connection;
+use thcolin\SensCritiqueAPI\User\User;
+use thcolin\SensCritiqueAPI\User\Listing;
+use thcolin\SensCritiqueAPI\Models\Artwork;
 
-  class Client{
+class Client{
 
-    use Connection;
+  use Connection;
 
-    public function getUser($username){
-      $uri = $username;
-      return new User($uri);
-    }
-
-    public function getList($id){
-      $uri = substr($this -> api -> getLocation('liste/Unkown/'.$id), 1);
-      return new Listing($uri);
-    }
-
-    public function getArtwork($id){
-      $uri = substr($this -> api -> getLocation('film/Unkown/'.$id), 1);
-      return Artwork::constructObjectByURI($uri);
-    }
-
+  public function getUser($username){
+    $uri = $username;
+    return new User($uri);
   }
+
+  public function getList($id){
+    $uri = substr($this->api->getLocation('liste/Unkown/'.$id), 1);
+    return new Listing($uri);
+  }
+
+  public function getArtwork($id){
+    $uri = substr($this->api->getLocation('film/Unkown/'.$id), 1);
+    return Artwork::constructObjectByURI($uri);
+  }
+
+}
 
 ?>

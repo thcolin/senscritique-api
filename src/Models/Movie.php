@@ -1,9 +1,9 @@
 <?php
 
-  namespace thcolin\SensCritiqueAPI\Models;
+namespace thcolin\SensCritiqueAPI\Models;
 
-  use thcolin\SensCritiqueAPI\Exceptions\DocumentParsingException;
+use thcolin\SensCritiqueAPI\Exceptions\DocumentParsingException;
 
-  class Movie extends Artwork{}
+class Movie extends Artwork{}
 
 ?>

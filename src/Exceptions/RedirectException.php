@@ -1,9 +1,9 @@
 <?php
 
-  namespace thcolin\SensCritiqueAPI\Exceptions;
+namespace thcolin\SensCritiqueAPI\Exceptions;
 
-  use Exception;
+use Exception;
 
-  class RedirectException extends Exception{}
+class RedirectException extends Exception{}
 
 ?>
