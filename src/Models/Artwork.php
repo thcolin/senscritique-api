@@ -65,7 +65,7 @@ abstract class Artwork{
     if($elements = $this->find('body')){
       return intval($elements[0]->attr('data-sc-page-object-id'));
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('id');
     }
   }
 
@@ -80,7 +80,7 @@ abstract class Artwork{
       $element = $this->findNextNodeByText($elements[0], 'Titre original');
       return ($element ? $element->text():null);
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('title');
     }
   }
 
@@ -88,13 +88,13 @@ abstract class Artwork{
     if($elements = $this->find('.d-grid-aside')){
       if($document = $this->findNextNodeByText($elements[0], 'Année de production')){
         return intval($document->text());
-      } else if($document = $this->findNextNodeByText($elements[0], 'Première diffusion')){
+      } else if($document = $this->findNextNodeByText($elements[0], '#Première diffusion#', true)){
         return intval(substr($document->text(), -4));
       } else{
-        throw new DocumentParsingException();
+        throw new DocumentParsingException('year');
       }
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('year');
     }
   }
 
@@ -108,7 +108,7 @@ abstract class Artwork{
         }
       }
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('directors');
     }
 
     return ($array ? $directors:implode(', ', $directors));
@@ -124,7 +124,7 @@ abstract class Artwork{
         }
       }
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('actors');
     }
 
     return ($array ? $actors:implode(', ', $actors));
@@ -142,7 +142,7 @@ abstract class Artwork{
         $genres[] = 'Film';
       }
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('genres');
     }
 
     return ($array ? $genres:implode(', ', $genres));
@@ -152,7 +152,7 @@ abstract class Artwork{
     if($elements = $this->find('.d-grid-aside')){
       return $this->findNextNodeByText($elements[0], 'Durée')->text();
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('duration');
     }
   }
 
@@ -164,7 +164,7 @@ abstract class Artwork{
         $countries[] = $element->text();
       }
     } else{
-      throw new DocumentParsingException();
+      throw new DocumentParsingException('countries');
     }
 
     return ($array ? $countries:implode(', ', $countries));
