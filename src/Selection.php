@@ -7,7 +7,7 @@ use thcolin\SensCritiqueAPI\Models\Artwork;
 use ArrayAccess;
 use Exception;
 
-class Selection extends DynamicArray{
+abstract class Selection extends DynamicArray{
 
   use Document;
 
@@ -51,6 +51,10 @@ class Selection extends DynamicArray{
       return 1;
     }
   }
+
+  abstract public function getName();
+
+  abstract public function getDescription();
 
 }
 

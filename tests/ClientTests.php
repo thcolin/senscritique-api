@@ -25,6 +25,8 @@ class ClientTest extends PHPUnit_Framework_TestCase{
   public function testGetUserCollectionSuccess(){
     $collection = $this->client->getUser('Thomas_Colin')->getCollection();
     $this->assertGreaterThanOrEqual(552, $collection->length());
+    $this->assertEquals("Collection", $collection->getName());
+    $this->assertEquals(null, $collection->getDescription());
 
     $movie = $collection[$collection->length() - 1];
 
@@ -50,16 +52,10 @@ class ClientTest extends PHPUnit_Framework_TestCase{
 
     $this->assertGreaterThanOrEqual(11, $lists->length());
     $this->assertGreaterThanOrEqual(340, $lists['Coding']->length());
-    $this->assertGreaterThanOrEqual(26, $lists['Gaucho']->length());
-    $this->assertGreaterThanOrEqual(102, $lists['Brainfuck']->length());
-    $this->assertGreaterThanOrEqual(1, $lists['Christmas']->length());
-    $this->assertGreaterThanOrEqual(262, $lists['Tasteless']->length());
-    $this->assertGreaterThanOrEqual(2, $lists['Decompress']->length());
-    $this->assertGreaterThanOrEqual(168, $lists['Indieshit']->length());
-    $this->assertGreaterThanOrEqual(131, $lists['Classics']->length());
-    $this->assertGreaterThanOrEqual(26, $lists['LOL']->length());
-    $this->assertGreaterThanOrEqual(5, $lists['Animes']->length());
-    $this->assertGreaterThanOrEqual(6, $lists['Travel']->length());
+    $this->assertEquals("Coding", $lists['Coding']->getName());
+    $this->assertEquals("Movies to watch when I'm coding (most of the time, movies are shit)", $lists['Coding']->getDescription());
+    $this->assertEquals("Travel", $lists['Travel']->getName());
+    $this->assertEquals(null, $lists['Travel']->getDescription());
 
     $movie = $lists['Animes'][0];
 
