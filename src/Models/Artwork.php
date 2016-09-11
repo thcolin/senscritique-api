@@ -73,6 +73,10 @@ abstract class Artwork{
     return $this->__toString();
   }
 
+  public function getType(){
+    return static::TYPE;
+  }
+
   public function getTitle($type = self::TITLE_DEFAULT){
     if($type == self::TITLE_DEFAULT && $elements = $this->find('.pco-cover-title')){
       return trim($elements[0]->text());

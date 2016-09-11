@@ -4,6 +4,8 @@ namespace thcolin\SensCritiqueAPI\Models;
 
 use thcolin\SensCritiqueAPI\Exceptions\DocumentParsingException;
 
-class TVShow extends Artwork{}
+class TVShow extends Artwork{
+  const TYPE = 'tvshow';
+}
 
 ?>

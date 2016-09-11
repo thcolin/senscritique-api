@@ -1,6 +1,8 @@
 <?php
 
 use thcolin\SensCritiqueAPI\Client;
+use thcolin\SensCritiqueAPI\Models\Movie;
+use thcolin\SensCritiqueAPI\Models\TVShow;
 use thcolin\SensCritiqueAPI\Models\Artwork;
 
 class ClientTest extends PHPUnit_Framework_TestCase{
@@ -27,6 +29,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $movie = $collection[$collection->length() - 1];
 
     $this->assertEquals(420119, $movie->getId());
+    $this->assertEquals(Movie::TYPE, $movie->getType());
     $this->assertEquals('Gravity', $movie->getTitle());
     $this->assertEquals(2013, $movie->getYear());
     $this->assertEquals('Alfonso Cuarón', $movie->getDirectors());
@@ -61,6 +64,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $movie = $lists['Animes'][0];
 
     $this->assertEquals(392900, $movie->getId());
+    $this->assertEquals(Movie::TYPE, $movie->getType());
     $this->assertEquals('Anastasia', $movie->getTitle());
     $this->assertEquals(1997, $movie->getYear());
     $this->assertEquals('Don Bluth, Gary Goldman', $movie->getDirectors());
@@ -80,6 +84,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $movie = $this->client->getArtwork(408059);
 
     $this->assertEquals(408059, $movie->getId());
+    $this->assertEquals(Movie::TYPE, $movie->getType());
     $this->assertEquals('C\'est la fin', $movie->getTitle());
     $this->assertEquals('This Is the End', $movie->getTitle(Artwork::TITLE_ORIGINAL));
     $this->assertEquals(2012, $movie->getYear());
@@ -95,6 +100,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $movie = $this->client->getArtwork(13330620);
 
     $this->assertEquals(13330620, $movie->getId());
+    $this->assertEquals(Movie::TYPE, $movie->getType());
     $this->assertEquals('Demain', $movie->getTitle());
     $this->assertEquals(2015, $movie->getYear());
     $this->assertEquals('Cyril Dion, Mélanie Laurent', $movie->getDirectors());
@@ -116,6 +122,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
 
     $this->assertArrayHasKey('id', $serialized);
     $this->assertArrayHasKey('url', $serialized);
+    $this->assertArrayHasKey('type', $serialized);
     $this->assertArrayHasKey('title', $serialized);
     $this->assertArrayHasKey('year', $serialized);
     $this->assertArrayHasKey('directors', $serialized);
@@ -127,18 +134,19 @@ class ClientTest extends PHPUnit_Framework_TestCase{
   }
 
   public function testGetArtworkTVShowSuccess(){
-    $movie = $this->client->getArtwork(438579);
+    $tvshow = $this->client->getArtwork(438579);
 
-    $this->assertEquals(438579, $movie->getId());
-    $this->assertEquals('Black Mirror', $movie->getTitle());
-    $this->assertEquals(null, $movie->getTitle(Artwork::TITLE_ORIGINAL));
-    $this->assertEquals(2011, $movie->getYear());
-    $this->assertEquals('Charlie Brooker', $movie->getDirectors());
-    $this->assertEquals('Rasmus Hardiker, Tobias Menzies, Janet Montgomery, Ian Bonar, Tuppence Middleton, Jason Flemyng, Claire Keelan, Chloe Pirrie', $movie->getActors());
-    $this->assertEquals('Thriller, Drame', $movie->getGenres());
-    $this->assertEquals('1 h', $movie->getDuration());
-    $this->assertEquals('Royaume-uni', $movie->getCountries());
-    $this->assertEquals('Série britannique présentant à chaque épisode une réalité et un casting différents, reflétant la façon dont l\'homme vit de nos jours ainsi que ses conséquences.', $movie->getStoryline());
+    $this->assertEquals(438579, $tvshow->getId());
+    $this->assertEquals(TVShow::TYPE, $tvshow->getType());
+    $this->assertEquals('Black Mirror', $tvshow->getTitle());
+    $this->assertEquals(null, $tvshow->getTitle(Artwork::TITLE_ORIGINAL));
+    $this->assertEquals(2011, $tvshow->getYear());
+    $this->assertEquals('Charlie Brooker', $tvshow->getDirectors());
+    $this->assertEquals('Rasmus Hardiker, Tobias Menzies, Janet Montgomery, Ian Bonar, Tuppence Middleton, Jason Flemyng, Claire Keelan, Chloe Pirrie', $tvshow->getActors());
+    $this->assertEquals('Thriller, Drame', $tvshow->getGenres());
+    $this->assertEquals('1 h', $tvshow->getDuration());
+    $this->assertEquals('Royaume-uni', $tvshow->getCountries());
+    $this->assertEquals('Chaque épisode de cette anthologie montre la dépendance des hommes vis-à-vis de tout ce qui a un écran et les conséquences de cette dépendance.', $tvshow->getStoryline());
   }
 
 }
