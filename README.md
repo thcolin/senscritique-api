@@ -42,3 +42,5 @@ Check ```tests/ClientTests``` for more
 
 ## TODO
 * Implement ```Client``` method ```searchArtwork```, but only "next page" available, not latest
+* Add log (and levels) on ```API``` and other ```Core``` or ```src``` class
+* Add stress tests (how much ```Artwork``` can the API handle ?)
