@@ -19,7 +19,7 @@ class API{
     $requests = $documents = [];
 
     foreach($uris as $uri){
-      $requests[] = new Request('http://'.self::DOMAIN.'/'.$uri);
+      $requests[] = new Request('https://'.self::DOMAIN.'/'.$uri);
       $dp->add(end($requests));
     }
 
@@ -41,7 +41,7 @@ class API{
   }
 
   public function getJSONByURI($uri){
-    $request = new Request('http://'.self::DOMAIN.'/sc2/'.$uri.'.json');
+    $request = new Request('https://'.self::DOMAIN.'/sc2/'.$uri.'.json');
     $request->setOption(CURLOPT_HTTPHEADER, ['X-Requested-With: XMLHttpRequest']);
     $request->execute();
 
@@ -56,7 +56,7 @@ class API{
   }
 
   public function getLocation($uri){
-    $request = new Request('http://'.self::DOMAIN.'/'.$uri);
+    $request = new Request('https://'.self::DOMAIN.'/'.$uri);
     $request->execute();
 
     $location = $request->getResponse()->headers->get('location');
