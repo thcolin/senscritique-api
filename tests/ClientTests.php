@@ -10,6 +10,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
   public function setUp(){
     $this->client = new Client();
     error_reporting(E_ALL^E_WARNING);
+    ini_set('memory_limit', '-1');
   }
 
   public function testGetUserSuccess(){
@@ -50,11 +51,11 @@ class ClientTest extends PHPUnit_Framework_TestCase{
   public function testGetUserListsSuccess(){
     $lists = $this->client->getUser('Thomas_Colin')->getLists();
 
-    $this->assertGreaterThanOrEqual(11, $lists->length());
+    $this->assertGreaterThanOrEqual(10, $lists->length());
     $this->assertGreaterThanOrEqual(340, $lists['Coding']->length());
-    $this->assertEquals("Coding", $lists['Coding']->getName());
-    $this->assertEquals("Movies to watch when I'm coding (most of the time, movies are shit)", $lists['Coding']->getDescription());
-    $this->assertEquals("Travel", $lists['Travel']->getName());
+    $this->assertEquals('Coding', $lists['Coding']->getName());
+    $this->assertEquals("Movies to watch when I'm coding (mostly shitty romantic movies)", $lists['Coding']->getDescription());
+    $this->assertEquals('Travel', $lists['Travel']->getName());
     $this->assertEquals(null, $lists['Travel']->getDescription());
 
     $movie = $lists['Animes'][0];
@@ -64,7 +65,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $this->assertEquals('Anastasia', $movie->getTitle());
     $this->assertEquals(1997, $movie->getYear());
     $this->assertEquals('Don Bluth, Gary Goldman', $movie->getDirectors());
-    $this->assertEquals('Jean-Michel Farcy, Lucienne Chiaroni, Barbara Tissier, Patrick Guillemin, Meg Ryan, John Cusack, Christopher Lloyd (1), Kelsey Grammer', $movie->getActors());
+    $this->assertEquals('Jean-Michel Farcy, Lucienne Chiaroni, Barbara Tissier, Patrick Guillemin, Meg Ryan, John Cusack, Christopher Lloyd, Kelsey Grammer', $movie->getActors());
     $this->assertEquals('Animation, Aventure, Drame, Fantastique', $movie->getGenres());
     $this->assertEquals('1 h 34 min', $movie->getDuration());
     $this->assertEquals('États-unis', $movie->getCountries());
@@ -138,7 +139,7 @@ class ClientTest extends PHPUnit_Framework_TestCase{
     $this->assertEquals(null, $tvshow->getTitle(Artwork::TITLE_ORIGINAL));
     $this->assertEquals(2011, $tvshow->getYear());
     $this->assertEquals('Charlie Brooker', $tvshow->getDirectors());
-    $this->assertEquals('Rasmus Hardiker, Tobias Menzies, Janet Montgomery, Ian Bonar, Tuppence Middleton, Jason Flemyng, Claire Keelan, Chloe Pirrie', $tvshow->getActors());
+    $this->assertEquals('Gugu Mbatha-Raw, Alex Lawther, Jerome Flynn, Mackenzie Davis, Rasmus Hardiker, Tobias Menzies, Janet Montgomery, Ian Bonar', $tvshow->getActors());
     $this->assertEquals('Thriller, Drame', $tvshow->getGenres());
     $this->assertEquals('1 h', $tvshow->getDuration());
     $this->assertEquals('Royaume-uni', $tvshow->getCountries());
