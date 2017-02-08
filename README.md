@@ -1,5 +1,10 @@
 # SensCritique API
 
+
+[![Build Status](https://travis-ci.org/thcolin/senscritique-api.svg?branch=master)](https://travis-ci.org/thcolin/senscritique-api)
+[![Code Climate](https://codeclimate.com/github/thcolin/senscritique-api/badges/gpa.svg)](https://codeclimate.com/github/thcolin/senscritique-api)
+[![Test Coverage](https://codeclimate.com/github/thcolin/senscritique-api/badges/coverage.svg)](https://codeclimate.com/github/thcolin/senscritique-api/coverage)
+
 PHP Library to call basics usage of SensCritique website by curl and dom parsing
 
 ## Installation
